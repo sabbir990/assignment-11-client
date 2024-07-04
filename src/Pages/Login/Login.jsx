@@ -13,7 +13,7 @@ export default function Login() {
                             <span className='text-pink-600 font-bold'><FaRegHandPeace /></span><span>Volunteer</span>
                         </div>
                         <div>
-                            <h1 className='font-bold text-center'>Login to our VOLUNTEER</h1>
+                            <h1 className='font-bold text-center'>Login to VOLUNTEER</h1>
                         </div>
                         <div className='flex justify-center'>
                             <button className='btn btn-outline btn-success'>Login With Google <FaGoogle /></button>
@@ -39,7 +39,7 @@ export default function Login() {
                         <div className="form-control mt-6">
                             <button className="btn btn-outline btn-secondary">Login</button>
                         </div>
-                        <p className='font-bold'>Already have an account? <Link to={'/register'} className='text-blue-700 underline cursor-pointer font-bold'>Register Now</Link></p>
+                        <p className='font-bold'>Don't have any account? <Link to={'/register'} className='text-blue-700 underline cursor-pointer font-bold'>Register Now</Link></p>
                     </form>
                 </div>
             </div>
