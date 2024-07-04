@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FaRegHandPeace } from "react-icons/fa6";
+import { AuthContext } from '../../Providers/AuthProvider';
 
 export default function Navbar() {
+  const { user, setUser, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut().then(res => {
+      setUser(null)
+    })
+  }
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -26,7 +34,7 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li><NavLink to={'/'}>Home</NavLink></li>
             <li><NavLink to={'/needVolunteer'}>Need Volunteer</NavLink></li>
-            <li><NavLink to={'/login'}>Login</NavLink></li>
+            {!user && <li><NavLink to={'/login'}>Login</NavLink></li>}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl"><span className='text-pink-600 font-bold'><FaRegHandPeace /></span><span>Volunteer</span></a>
@@ -35,10 +43,10 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li><NavLink to={'/'}>Home</NavLink></li>
           <li><NavLink to={'/needVolunteer'}>Need Volunteer</NavLink></li>
-          <li><NavLink to={'/login'}>Login</NavLink></li>
+          {!user && <li><NavLink to={'/login'}>Login</NavLink></li>}
         </ul>
       </div>
-      <div className="navbar-end">
+      {user && <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -50,18 +58,13 @@ export default function Navbar() {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
+            <p className='py-4 font-bold text-center'>{user && user.email}</p>
             <li><a>Add Volunteer Post</a></li>
             <li><a>Manage My post</a></li>
-            <li><a>Logout</a></li>
+            <li><button onClick={handleLogOut}>Logout</button></li>
           </ul>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
