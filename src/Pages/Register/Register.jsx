@@ -1,11 +1,15 @@
 import React, { useContext } from 'react'
 import { FaRegHandPeace, FaGoogle } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider'
 import toast from 'react-hot-toast'
+import Swal from 'sweetalert2'
 
 export default function Register() {
-    const {setUser, createUser, updateUser} = useContext(AuthContext)
+    const { setUser, createUser, updateUser } = useContext(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const handleRegisterSubmit = (event) => {
         event.preventDefault();
 
@@ -15,24 +19,35 @@ export default function Register() {
         const email = form.email.value;
         const password = form.password.value;
 
-        if(!/^.{6,}$/.test(password)){
+        if (!/^.{6,}$/.test(password)) {
             toast.error('Password must have at least 6 characters')
             return;
         }
 
-        if(!/[A-Z]/.test(password)){
+        if (!/[A-Z]/.test(password)) {
             toast.error('Your password must have one uppercase letter')
             return;
         }
 
-        if(!/[a-z]/.test(password)){
+        if (!/[a-z]/.test(password)) {
             toast.error('Your password must have one uppercase letter')
             return;
         }
 
         createUser(email, password).then(result => {
             updateUser(name, photoURL).then(result => {
-                setUser(result.user)
+                Swal.fire({
+                    title: "Well done!",
+                    text: "Registration Successful!",
+                    icon: "success"
+                });
+
+                if(location.state){
+                    navigate(location.state)
+                }else{
+                    navigate('/')
+                }
+
             })
         })
     }
