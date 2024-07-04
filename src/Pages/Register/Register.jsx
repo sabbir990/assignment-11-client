@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import Swal from 'sweetalert2'
 
 export default function Register() {
-    const { setUser, createUser, updateUser } = useContext(AuthContext)
+    const { setUser, createUser, updateUser, googleLogin } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -42,13 +42,32 @@ export default function Register() {
                     icon: "success"
                 });
 
-                if(location.state){
+                if (location.state) {
                     navigate(location.state)
-                }else{
+                } else {
                     navigate('/')
                 }
 
             })
+        })
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin().then(result => {
+            setUser(result.user);
+            console.log(result.user);
+
+            Swal.fire({
+                title: "Well done!",
+                text: "Registration Successful!",
+                icon: "success"
+            });
+
+            if (location.state) {
+                navigate(location.state)
+            } else {
+                navigate('/')
+            }
         })
     }
     return (
@@ -63,7 +82,7 @@ export default function Register() {
                             <h1 className='font-bold text-center'>Register to VOLUNTEER</h1>
                         </div>
                         <div className='flex justify-center'>
-                            <button className='btn btn-outline btn-success'>Register With Google <FaGoogle /></button>
+                            <button className='btn btn-outline btn-success' onClick={handleGoogleLogin}>Register With Google <FaGoogle /></button>
                         </div>
                     </div>
                     <hr />

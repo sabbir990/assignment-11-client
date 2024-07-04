@@ -6,7 +6,7 @@ import { AuthContext } from '../../Providers/AuthProvider'
 import Swal from 'sweetalert2'
 
 export default function Login() {
-    const { user, setUser, login } = useContext(AuthContext)
+    const { setUser, login, googleLogin } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -24,9 +24,28 @@ export default function Login() {
                 text: "Login Successful",
                 icon: "success"
             });
-            if(location.state){
+            if (location.state) {
                 navigate(location.state)
-            }else{
+            } else {
+                navigate('/')
+            }
+        })
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin().then(result => {
+            setUser(result.user);
+            console.log(result.user);
+
+            Swal.fire({
+                title: "Well done!",
+                text: "Registration Successful!",
+                icon: "success"
+            });
+
+            if (location.state) {
+                navigate(location.state)
+            } else {
                 navigate('/')
             }
         })
@@ -43,7 +62,7 @@ export default function Login() {
                             <h1 className='font-bold text-center'>Login to VOLUNTEER</h1>
                         </div>
                         <div className='flex justify-center'>
-                            <button className='btn btn-outline btn-success'>Login With Google <FaGoogle /></button>
+                            <button className='btn btn-outline btn-success' onClick={handleGoogleLogin}>Login With Google <FaGoogle /></button>
                         </div>
                     </div>
                     <hr />

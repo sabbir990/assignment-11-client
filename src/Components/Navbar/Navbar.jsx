@@ -49,15 +49,15 @@ export default function Navbar() {
       {user && <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full" title={user?.displayName}>
               <img
-                alt="Tailwind CSS Navbar component"
-                src={user && user?.photoURL} />
+                alt={user?.displayName}
+                src={user?.photoURL} />
             </div>
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 p-2 shadow w-auto">
             <p className='py-4 font-bold text-center'>{user && user.email}</p>
             <li><a>Add Volunteer Post</a></li>
             <li><a>Manage My post</a></li>
