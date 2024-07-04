@@ -56,7 +56,8 @@ export default function Navbar() {
                 <span className="badge">New</span>
               </a>
             </li>
-            <li><a>Settings</a></li>
+            <li><a>Add Volunteer Post</a></li>
+            <li><a>Manage My post</a></li>
             <li><a>Logout</a></li>
           </ul>
         </div>
