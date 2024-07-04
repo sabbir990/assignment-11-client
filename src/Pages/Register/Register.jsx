@@ -1,8 +1,41 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRegHandPeace, FaGoogle } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../Providers/AuthProvider'
+import toast from 'react-hot-toast'
 
 export default function Register() {
+    const {setUser, createUser, updateUser} = useContext(AuthContext)
+    const handleRegisterSubmit = (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        if(!/^.{6,}$/.test(password)){
+            toast.error('Password must have at least 6 characters')
+            return;
+        }
+
+        if(!/[A-Z]/.test(password)){
+            toast.error('Your password must have one uppercase letter')
+            return;
+        }
+
+        if(!/[a-z]/.test(password)){
+            toast.error('Your password must have one uppercase letter')
+            return;
+        }
+
+        createUser(email, password).then(result => {
+            updateUser(name, photoURL).then(result => {
+                setUser(result.user)
+            })
+        })
+    }
     return (
         <div className="hero min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -19,7 +52,7 @@ export default function Register() {
                         </div>
                     </div>
                     <hr />
-                    <form className="card-body">
+                    <form className="card-body" onSubmit={handleRegisterSubmit}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
