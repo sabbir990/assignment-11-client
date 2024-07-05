@@ -5,7 +5,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import NeedVolunteer from "../Pages/Need Volunteer/NeedVolunteer";
 import AddVolunteer from "../Pages/Add Volunteer/AddVolunteer";
-import BeAVolunteer from "../Components/Be a volunteer/BeAVolunteer";
+import BeAVolunteer from "../Pages/Be a volunteer/BeAVolunteer";
 
 const router = createBrowserRouter([
     {

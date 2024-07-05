@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function BeAVolunteer() {
+export default function JoinUs() {
     return (
         <div className='flex flex-col space-y-4'>
             <h1 className='font-bold text-3xl text-center'>Join Us</h1>
             <p className='text-gray-500 text-center'>Become a part of our vibrant volunteer community! Your time, skills, and passion can make a significant impact. Together, we can achieve great things and bring positive change to our community. Join us today and be a catalyst for good!</p>
-            <div className='flex rounded-lg'>
+            <div className='flex flex-col md:flex-row lg:flex-row rounded-lg'>
                 <div className='flex-1 bg-gray-800 text-white text-center p-4 flex flex-col justify-center rounded-l-lg'>
                     <p>Ready to make a difference? By volunteering with us, you’ll contribute to meaningful projects, meet like-minded individuals, and gain valuable experience. Whether you have a few hours or a few days to give, your support will help us achieve our mission. Join us and be a part of something special!</p>
                     <Link to={'/beAVolunteer'}><button className='btn btn-outline btn-accent mt-4'>Be a Volunteer</button></Link>

@@ -2,7 +2,9 @@ import React from 'react'
 import Banner from '../../Components/Banner/Banner'
 import VolunteerNeedNow from '../../Components/Volunteer Needs Now/VolunteerNeedNow'
 import { Link } from 'react-router-dom'
-import BeAVolunteer from '../../Components/Be a volunteer/BeAVolunteer'
+import BeAVolunteer from '../Be a volunteer/BeAVolunteer'
+import JoinUs from '../../Components/JoinUs Section/JoinUs'
+import Subscribe from '../../Components/Subscribe section/Subscribe'
 
 export default function Home() {
   return (
@@ -18,7 +20,10 @@ export default function Home() {
           </Link>
         </div>
         <div className='mt-20'>
-          <BeAVolunteer />
+          <JoinUs />
+        </div>
+        <div className='mt-20'>
+          <Subscribe />
         </div>
       </body>
     </div>
