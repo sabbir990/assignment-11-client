@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const Slide = ({image, title, description}) => {
-    console.log(image)
     return (
         <div
             className='w-full bg-center bg-cover h-[38rem]'
