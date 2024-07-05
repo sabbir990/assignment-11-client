@@ -2,14 +2,14 @@ import React from 'react'
 
 export default function PostCard({id, thumbnail, category, deadline, postTitle, description, organizerName}) {
     return (
-        <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <img className="object-cover w-full h-64" src={thumbnail} alt={category} />
+        <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 border-2 border-gray-600">
+            <img className="object-cover w-full h-auto" src={thumbnail} alt={category} />
 
             <div className="p-6">
                 <div>
                     <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{category}</span>
-                    <a href="#" className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline" tabindex="0" role="link">{postTitle}</a>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{description}</p>
+                    <p className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline" tabindex="0" role="link">{postTitle}</p>
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{description.slice(0, 50)}...</p>
                 </div>
 
                 <div className="mt-4">
