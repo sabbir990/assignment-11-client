@@ -5,29 +5,35 @@ import { auth } from '../Firebase/Firebase.config'
 
 export const AuthContext = createContext(null)
 export default function AuthProvider({children}) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const googleProvider = new GoogleAuthProvider();
 
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const updateUser = (name, photo) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName : name, photoURL : photo
         });
     }
 
     const logOut = () => {
+        setLoading(true)
         return signOut(auth);
     }
 
     const login = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const googleLogin = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider);
     }
 
@@ -38,6 +44,8 @@ export default function AuthProvider({children}) {
             }else{
                 console.log('Already logged out')
             }
+
+            setLoading(false);
         })
 
         return () => {
@@ -51,7 +59,9 @@ export default function AuthProvider({children}) {
         updateUser,
         logOut,
         login,
-        googleLogin
+        googleLogin,
+        loading,
+        setLoading
     }
   return (
     <AuthContext.Provider value={authObject}>

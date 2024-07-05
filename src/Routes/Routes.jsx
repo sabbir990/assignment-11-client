@@ -6,35 +6,40 @@ import Register from "../Pages/Register/Register";
 import NeedVolunteer from "../Pages/Need Volunteer/NeedVolunteer";
 import AddVolunteer from "../Pages/Add Volunteer/AddVolunteer";
 import BeAVolunteer from "../Pages/Be a volunteer/BeAVolunteer";
+import PrivateRoute from "../Private Route/PrivateRoute";
 
 const router = createBrowserRouter([
     {
-        path : '/',
-        element : <Root />,
-        children : [
+        path: '/',
+        element: <Root />,
+        children: [
             {
-                path : '/',
-                element : <Home />
+                path: '/',
+                element: <Home />
             },
             {
-                path : '/login',
-                element : <Login />
+                path: '/login',
+                element: <Login />
             },
             {
-                path : '/register',
-                element : <Register />
+                path: '/register',
+                element: <Register />
             },
             {
-                path : '/needVolunteer',
-                element : <NeedVolunteer />
+                path: '/needVolunteer',
+                element: <NeedVolunteer />
             },
             {
-                path : '/addVolunteer',
-                element : <AddVolunteer />
+                path: '/addVolunteer',
+                element: <PrivateRoute>
+                    <AddVolunteer />
+                </PrivateRoute>
             },
             {
-                path : '/beAVolunteer',
-                element : <BeAVolunteer />
+                path: '/beAVolunteer',
+                element: <PrivateRoute>
+                    <BeAVolunteer />
+                </PrivateRoute>
             }
         ]
     }
