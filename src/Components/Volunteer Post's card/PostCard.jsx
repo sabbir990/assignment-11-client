@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function PostCard({id, thumbnail, category, deadline, postTitle, description, organizerName}) {
     return (
@@ -20,7 +21,7 @@ export default function PostCard({id, thumbnail, category, deadline, postTitle, 
                         <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">{new Date(deadline).toLocaleDateString()}</span>
                     </div>
                     <div className='w-full'>
-                        <button className='btn btn-outline btn-warning w-full mt-4'>View Details</button>
+                        <Link to={`/postDetails/${id}`}><button className='btn btn-outline btn-warning w-full mt-4'>View Details</button></Link>
                     </div>
                 </div>
             </div>
