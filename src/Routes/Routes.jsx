@@ -37,7 +37,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: '/beAVolunteer',
+                path: '/beAVolunteer/:id',
                 element: <PrivateRoute>
                     <BeAVolunteer />
                 </PrivateRoute>

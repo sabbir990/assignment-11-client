@@ -32,7 +32,7 @@ export default function PostDetails() {
                         <p className="">{details?.description}</p>
 
                         <div className="flex items-center justify-between mt-6 md:justify-start">
-                            <Link to={'/beAVolunteer'}><button className='btn btn-outline btn-neutral'>Be a Volunteer</button></Link>
+                            <Link to={`/beAVolunteer/${details?._id}`}><button className='btn btn-outline btn-neutral'>Be a Volunteer</button></Link>
                         </div>
                     </div>
                 </div>

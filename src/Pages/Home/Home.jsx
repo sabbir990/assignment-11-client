@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Banner from '../../Components/Banner/Banner'
 import VolunteerNeedNow from '../../Components/Volunteer Needs Now/VolunteerNeedNow'
 import { Link } from 'react-router-dom'
-import BeAVolunteer from '../Be a volunteer/BeAVolunteer'
 import JoinUs from '../../Components/JoinUs Section/JoinUs'
 import Subscribe from '../../Components/Subscribe section/Subscribe'
+import { AuthContext } from '../../Providers/AuthProvider'
 
 export default function Home() {
   return (
