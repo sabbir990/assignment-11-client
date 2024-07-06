@@ -62,6 +62,7 @@ export default function Navbar() {
             <hr />
             <li><Link to={'/addVolunteer'}>Add Volunteer Post</Link></li>
             <li><Link to={'/manageMyPosts'}>Manage My post</Link></li>
+            <li><Link to={'/MyVolunteerRequests'}>My Volunteer Requests</Link></li>
             <li><button onClick={handleLogOut}>Logout</button></li>
           </ul>
         </div>
