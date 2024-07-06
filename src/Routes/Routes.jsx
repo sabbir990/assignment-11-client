@@ -11,11 +11,13 @@ import PostDetails from "../Pages/Post Details/PostDetails";
 import ManageMyPost from "../Pages/Manage My post/ManageMyPost";
 import UpdateMyPost from "../Pages/Update My Post/UpdateMyPost";
 import MyVolunteerRequests from "../Pages/My Volunteer Request page/MyVolunteerRequests";
+import ErrorPage from "../Pages/404 Page/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
+        errorElement : <ErrorPage />,
         children: [
             {
                 path: '/',
