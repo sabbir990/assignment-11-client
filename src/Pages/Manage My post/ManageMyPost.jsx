@@ -3,7 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FaRegHandPeace } from 'react-icons/fa6'
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaPencilRuler } from "react-icons/fa";
-import {MdDeleteForever} from 'react-icons/md'
+import { MdDeleteForever } from 'react-icons/md'
+import { Link } from 'react-router-dom';
 
 export default function ManageMyPost() {
     const { user } = useContext(AuthContext);
@@ -75,10 +76,12 @@ export default function ManageMyPost() {
                                                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{post?.category}</td>
                                                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div className="flex items-center gap-x-6">
-                                                                <button title='Update' className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                                                    <FaPencilRuler />
-                                                                </button>
-|
+                                                                <Link to={`/updateMyPost/${post?._id}`}>
+                                                                    <button title='Update' className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                                                                        <FaPencilRuler />
+                                                                    </button>
+                                                                </Link>
+                                                                |
                                                                 <button title='Delete' className=" text-xl transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                                     <MdDeleteForever />
                                                                 </button>
