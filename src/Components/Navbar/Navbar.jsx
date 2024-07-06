@@ -61,7 +61,7 @@ export default function Navbar() {
             <p className='py-4 font-bold text-center'>{user && user.email}</p>
             <hr />
             <li><Link to={'/addVolunteer'}>Add Volunteer Post</Link></li>
-            <li><a>Manage My post</a></li>
+            <li><Link to={'/manageMyPosts'}>Manage My post</Link></li>
             <li><button onClick={handleLogOut}>Logout</button></li>
           </ul>
         </div>
