@@ -19,7 +19,7 @@ export default function VolunteerNeedNow() {
             <p className='text-gray-500'>We urgently need volunteers for community outreach, event coordination, and tutoring. Your help can make a big difference. Join us today!</p>
             <div className='mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
                 {user ?
-                    posts && posts.map(post => {
+                    posts && posts.slice(0, 6).map(post => {
                         return <PostCard key={post?._id} organizerName={post?.organizer_name} thumbnail={post?.thumbnail} postTitle={post?.post_title} category={post?.category} deadline={post?.deadline} id={post?._id} description={post?.description} />
                     })
                     : <span className="loading loading-spinner loading-lg"></span>}
