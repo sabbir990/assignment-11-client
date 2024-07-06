@@ -7,11 +7,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function AddVolunteer() {
     const { user } = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date());
     const locationPath = useLocation();
+    useTitle(locationPath.pathname)
     const navigate = useNavigate();
 
 
@@ -49,9 +51,9 @@ export default function AddVolunteer() {
                     icon: "success"
                 });
 
-                if(locationPath.state){
+                if (locationPath.state) {
                     navigate(locationPath.state)
-                }else{
+                } else {
                     navigate('/')
                 }
             }

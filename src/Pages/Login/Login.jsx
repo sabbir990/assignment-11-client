@@ -4,11 +4,13 @@ import { FaGoogle } from 'react-icons/fa6'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider'
 import Swal from 'sweetalert2'
+import useTitle from '../../Components/Custom Component/useTitle'
 
 export default function Login() {
     const { setUser, login, googleLogin } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
+    useTitle(location.pathname)
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();

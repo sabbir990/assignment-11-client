@@ -4,10 +4,14 @@ import { AuthContext } from '../../Providers/AuthProvider'
 import axios from 'axios';
 import { RxCross2 } from "react-icons/rx";
 import Swal from 'sweetalert2';
+import { useLocation } from 'react-router-dom';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function MyVolunteerRequests() {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [myRequests, setMyRequests] = useState([]);
+    const location = useLocation();
+    useTitle(location.pathname)
 
     useEffect(() => {
         axios.get(`http://localhost:5000/volunteerRequests/${user?.email}`).then(result => {
@@ -24,15 +28,15 @@ export default function MyVolunteerRequests() {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, Cancel it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`http://localhost:5000/deleteVolunteerRequest/${id}`).then(result => {
-                    if(result.data.deletedCount > 0){
+                    if (result.data.deletedCount > 0) {
 
                         Swal.fire({
-                          title: "Cancelled!",
-                          text: "Your request has been cancelled.",
-                          icon: "success"
+                            title: "Cancelled!",
+                            text: "Your request has been cancelled.",
+                            icon: "success"
                         });
 
                         setMyRequests(myRequests.filter(request => {
@@ -41,7 +45,7 @@ export default function MyVolunteerRequests() {
                     }
                 })
             }
-          });
+        });
     }
     return (
         <div>

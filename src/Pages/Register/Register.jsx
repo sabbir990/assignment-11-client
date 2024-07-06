@@ -4,11 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider'
 import toast from 'react-hot-toast'
 import Swal from 'sweetalert2'
+import useTitle from '../../Components/Custom Component/useTitle'
 
 export default function Register() {
     const { setUser, createUser, updateUser, googleLogin } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
+    useTitle(location.pathname)
 
     const handleRegisterSubmit = (event) => {
         event.preventDefault();

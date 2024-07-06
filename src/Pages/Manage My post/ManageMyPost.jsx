@@ -4,12 +4,15 @@ import { FaRegHandPeace } from 'react-icons/fa6'
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaPencilRuler } from "react-icons/fa";
 import { MdDeleteForever } from 'react-icons/md'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function ManageMyPost() {
     const { user } = useContext(AuthContext);
     const [myPosts, setMyPosts] = useState([]);
+    const location = useLocation();
+    useTitle(location.pathname)
 
     useEffect(() => {
         axios.get(`http://localhost:5000/myVolunteerPosts/${user?.email}`).then(result => {

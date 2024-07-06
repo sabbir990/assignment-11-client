@@ -2,10 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { FaRegHandPeace } from 'react-icons/fa6'
 import PostCard from '../../Components/Volunteer Post\'s card/PostCard'
+import { useLocation } from 'react-router-dom';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function NeedVolunteer() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState('');
+  const location = useLocation();
+  useTitle(location.pathname)
+
   useEffect(() => {
     axios.get(`http://localhost:5000/volunteerPosts`).then(result => {
       setPosts(result.data);

@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function PostDetails() {
     const [details, setDetails] = useState(null);
     const { id } = useParams();
+    const location = useLocation();
+    useTitle(location.pathname)
 
     useEffect(() => {
         axios.get(`http://localhost:5000/postDetails/${id}`).then(result => {

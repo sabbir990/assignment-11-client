@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { FaRegHandPeace } from 'react-icons/fa6'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
 import DatePicker from 'react-datepicker';
 import Swal from 'sweetalert2';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function UpdateMyPost() {
     const { user } = useContext(AuthContext)
@@ -12,6 +13,8 @@ export default function UpdateMyPost() {
     const { id } = useParams();
     const [startDate, setStartDate] = useState(new Date());
     const navigate = useNavigate()
+    const location = useLocation();
+    useTitle(location.pathname)
 
     useEffect(() => {
         axios.get(`http://localhost:5000/updateMyPost/${id}`).then(result => {

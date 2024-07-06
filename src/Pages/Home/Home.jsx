@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Banner from '../../Components/Banner/Banner'
 import VolunteerNeedNow from '../../Components/Volunteer Needs Now/VolunteerNeedNow'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import JoinUs from '../../Components/JoinUs Section/JoinUs'
 import Subscribe from '../../Components/Subscribe section/Subscribe'
-import { AuthContext } from '../../Providers/AuthProvider'
+import useTitle from '../../Components/Custom Component/useTitle'
 
 export default function Home() {
+  const location = useLocation();
+  useTitle(location.pathname)
   return (
     <div>
       <header className='my-4'>

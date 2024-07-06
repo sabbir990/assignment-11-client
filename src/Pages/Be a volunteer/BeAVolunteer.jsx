@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider'
 import { FaRegHandPeace } from 'react-icons/fa6';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useTitle from '../../Components/Custom Component/useTitle';
 
 export default function BeAVolunteer() {
   const { user } = useContext(AuthContext);
   const [details, setDetails] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  useTitle(location.pathname)
 
   useEffect(() => {
     axios.get(`http://localhost:5000/postDetails/${id}`).then(result => {
