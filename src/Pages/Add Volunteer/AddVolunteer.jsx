@@ -24,7 +24,7 @@ export default function AddVolunteer() {
         const description = form.description.value;
         const category = form.category.value;
         const location = form.location.value;
-        const volunteer_number = form.volunteer_number.value;
+        const volunteer_number = parseInt(form.volunteer_number.value);
         const deadline = startDate;
         const organizer_name = form.organizer_name.value;
         const organizer_email = form.organizer_email.value;

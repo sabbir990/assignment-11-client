@@ -1,19 +1,70 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider'
 import { FaRegHandPeace } from 'react-icons/fa6';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function BeAVolunteer() {
   const { user } = useContext(AuthContext);
   const [details, setDetails] = useState(null);
-  const {id} = useParams();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:5000/postDetails/${id}`).then(result => {
-        setDetails(result.data)
+      setDetails(result.data)
     })
-}, [])
+  }, [])
+
+  const handleBeAVolunteerSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const thumbnail = form.thumbnail?.value;
+    const post_title = form.post_title?.value;
+    const description = form.description?.value;
+    const category = form.category?.value;
+    const location = form.location?.value;
+    const volunteer_number = form.volunteer_number?.value;
+    const deadline = form.deadline?.value;
+    const organizer_name = form.organizer_name?.value;
+    const organizer_email = form.organizer_email?.value;
+    const volunteer_name = form.volunteer_name?.value;
+    const volunteer_email = form.volunteer_email?.value;
+    const suggession = form.suggession?.value;
+    const status = form.status?.value;
+
+    const volunteer = {
+      thumbnail,
+      post_title,
+      description,
+      category,
+      location,
+      volunteer_number,
+      deadline,
+      organizer_name,
+      organizer_email,
+      volunteer_name,
+      volunteer_email,
+      suggession,
+      status,
+      id
+    }
+
+    axios.post(`http://localhost:5000/beAVolunteer`, volunteer).then(result => {
+      if (result.data.insertedId) {
+        Swal.fire({
+          title: "Successful",
+          text: "Your Volunteer requested has been submitted!",
+          icon: "success"
+        });
+
+        navigate('/')
+      }
+    })
+  }
   return (
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
@@ -25,8 +76,8 @@ export default function BeAVolunteer() {
             <p className='text-center text-gray-500'>Join our team of dedicated volunteers and make a real difference in our community. Your time and skills can help create positive change and support those in need. Get involved today and be part of something impactful!</p>
           </div>
         </div>
-          <hr className='mt-4'/>
-        <form>
+        <hr className='mt-4' />
+        <form onSubmit={handleBeAVolunteerSubmit}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
               <label className="text-gray-700 dark:text-gray-200" for="username">Thumbnail</label>
@@ -95,7 +146,7 @@ export default function BeAVolunteer() {
           </div>
 
           <div className="flex justify-end mt-6">
-            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
+            <button className="btn btn-outline btn-accent w-full">Request</button>
           </div>
         </form>
       </section>
