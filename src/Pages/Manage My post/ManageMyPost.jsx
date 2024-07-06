@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { FaPencilRuler } from "react-icons/fa";
 import { MdDeleteForever } from 'react-icons/md'
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function ManageMyPost() {
     const { user } = useContext(AuthContext);
@@ -15,6 +16,34 @@ export default function ManageMyPost() {
             setMyPosts(result.data)
         })
     }, [])
+
+    const handleDeleteMyPost = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/deleteMyPost/${id}`).then(result => {
+                    if (result.data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "You post has been deleted successfully!",
+                            icon: "success"
+                        });
+
+                        setMyPosts(myPosts.filter(post => {
+                            return post._id !== id;
+                        }))
+                    }
+                })
+            }
+        });
+    }
     return (
         <div>
             <div className='flex flex-col items-center space-y-4'>
@@ -82,7 +111,7 @@ export default function ManageMyPost() {
                                                                     </button>
                                                                 </Link>
                                                                 |
-                                                                <button title='Delete' className=" text-xl transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                                                <button title='Delete' onClick={() => handleDeleteMyPost(post?._id)} className=" text-xl transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                                     <MdDeleteForever />
                                                                 </button>
                                                             </div>
